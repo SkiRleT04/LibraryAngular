@@ -1,0 +1,46 @@
+<kendo-dialog *ngIf="active" (close)="closeForm()">
+  <kendo-dialog-titlebar>
+    {{ isNew ? 'Add new magzine' : 'Edit magazine' }}
+  </kendo-dialog-titlebar>
+
+  <form novalidate [formGroup]="editForm">
+
+
+    <div class="form-group">
+      <label for="name" class="control-label">Name</label>
+      <input type="text" class="k-textbox" formControlName="name" />
+
+      <div class="k-tooltip k-tooltip-validation"
+           [hidden]="editForm.controls.name.valid || editForm.controls.name.pristine">
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="authorName" class="control-label">Author name</label>
+      <input type="text" class="k-textbox" formControlName="authorName" />
+
+      <div class="k-tooltip k-tooltip-validation"
+           [hidden]="editForm.controls.authorName.valid || editForm.controls.authorName.pristine">
+        Author name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="yearOfPublishing" class="control-label">Year of publishing</label>
+      <input type="number" class="k-textbox" formControlName="yearOfPublishing" />
+
+      <div class="k-tooltip k-tooltip-validation"
+           [hidden]="editForm.controls.yearOfPublishing.valid || editForm.controls.yearOfPublishing.pristine">
+        Year of publishing is required (between 1850-currnet Year)
+      </div>
+    </div>
+
+
+  </form>
+
+  <kendo-dialog-actions>
+    <button class="k-button" (click)="onCancel($event)">Cancel</button>
+    <button class="k-button k-primary" [disabled]="!editForm.valid" (click)="onSave($event)">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
